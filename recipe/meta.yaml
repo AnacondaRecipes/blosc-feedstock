@@ -43,7 +43,7 @@ test:
 
 about:
   home: https://www.blosc.org/
-  license: BSD
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSES/BLOSC.txt
   summary: A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`
