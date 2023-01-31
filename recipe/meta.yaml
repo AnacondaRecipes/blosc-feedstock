@@ -27,7 +27,7 @@ requirements:
     # zlib's patch version had to be bumped up by one to satisfy zstd's dependency requirements on it.
     - zlib =1.2.12
     - lz4-c =1.9.4
-    - zstd =1.5.2
+    - zstd =1.5.2   # This is in aggregate/cbc.yaml, but included here temporarily to work around a CI bug where that cbc.yaml isn't always being regarded.
 
 test:
   commands:
