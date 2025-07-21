@@ -42,7 +42,7 @@ test:
     - if not exist %LIBRARY_LIB%\\libblosc.lib exit 1    # [win]
 
 about:
-  home: https://www.blosc.org/
+  home: https://www.blosc.org
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
@@ -52,7 +52,7 @@ about:
     It has been designed to transmit data to the processor cache faster
     than the traditional, non-compressed, direct memory fetch approach
     via a memcpy() OS call.
-  doc_url: https://www.blosc.org/pages/blosc-in-depth/
+  doc_url: https://www.blosc.org/pages/blosc-in-depth
   dev_url: https://github.com/Blosc/c-blosc
 
 extra:
