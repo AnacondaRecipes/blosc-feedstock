@@ -1,4 +1,4 @@
-{% set version = "1.21.3" %}
+{% set version = "1.21.6" %}
 
 package:
   name: blosc
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/Blosc/c-blosc/archive/v{{ version }}.tar.gz
-  sha256: 941016c4564bca662080bb01aea74f06630bd665e598c6f6967fd91b2e2e0bb6
+  sha256: 9fcd60301aae28f97f1301b735f966cc19e7c49b6b4321b839b4579a0c156f38
 
 build:
   number: 0
@@ -16,15 +16,17 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - cmake
-    - make                                           # [unix]
+    - cmake >=2.8.12
+    - make  # [unix]
   host:
     # we probably won't ever use vc<14 at this point, but this is left here just in case
     - msinttypes =r26                                # [win and vc<14]
-    # pinnings below are taken from upstream's internal-complibs folder.
-    # zlib's patch version had to be bumped up by one to satisfy zstd's dependency requirements on it.
+    # pinnings below are taken should be taken from upstream's internal-complibs folder
+    # however old pinnings were kept as-is in order to avoid having to rebuild large
+    # amount of downstream packages for those.
     - zlib =1.2.12
     - lz4-c =1.9.4
     - zstd =1.5.2   # This is in aggregate/cbc.yaml, but included here temporarily to work around a CI bug where that cbc.yaml isn't always being regarded.
@@ -42,17 +44,17 @@ test:
     - if not exist %LIBRARY_LIB%\\libblosc.lib exit 1    # [win]
 
 about:
-  home: https://www.blosc.org/
+  home: https://www.blosc.org
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSES/BLOSC.txt
+  license_file: LICENSE.txt
   summary: A blocking, shuffling and loss-less compression library that can be faster than `memcpy()`
   description: |
     Blosc is a high performance compressor optimized for binary data.
     It has been designed to transmit data to the processor cache faster
     than the traditional, non-compressed, direct memory fetch approach
     via a memcpy() OS call.
-  doc_url: https://www.blosc.org/pages/blosc-in-depth/
+  doc_url: https://www.blosc.org/pages/blosc-in-depth
   dev_url: https://github.com/Blosc/c-blosc
 
 extra:
