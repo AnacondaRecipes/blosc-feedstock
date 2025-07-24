@@ -19,7 +19,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=2.8.12
-    - make                                           # [unix]
+    - make  # [unix]
   host:
     # we probably won't ever use vc<14 at this point, but this is left here just in case
     - msinttypes =r26                                # [win and vc<14]
