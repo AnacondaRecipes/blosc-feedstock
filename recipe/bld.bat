@@ -6,6 +6,7 @@ cd build
 if %ERRORLEVEL% neq 0 exit 1
 
 cmake -G "NMake Makefiles" ^
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
       -DCMAKE_BUILD_TYPE:STRING="Release" ^
       -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
       -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
