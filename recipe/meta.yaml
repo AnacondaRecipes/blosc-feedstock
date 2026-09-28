@@ -18,7 +18,6 @@ requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
     - cmake >=2.8.12
     - make  # [unix]
   host:
