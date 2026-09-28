@@ -3,6 +3,9 @@
 mkdir build
 cd build
 
+# Note that we compile using -O2 to avoid a segfault
+# caused by gcc 15.2. See https://github.com/Blosc/c-blosc/issues/402
+# CMake's Release mode defaults to -O3.
 cmake -G "Unix Makefiles" \
       -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
       -DCMAKE_BUILD_TYPE="Release" \
@@ -15,6 +18,7 @@ cmake -G "Unix Makefiles" \
       -DPREFER_EXTERNAL_LZ4:BOOL=ON \
       -DPREFER_EXTERNAL_ZLIB:BOOL=ON \
       -DPREFER_EXTERNAL_ZSTD:BOOL=ON \
+      -DCMAKE_C_FLAGS_RELEASE="${CFLAGS} -O2" \
       CMAKE_CXX=${CXX} \
       CMAKE_CC=${CC} \
       "${SRC_DIR}"

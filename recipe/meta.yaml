@@ -9,7 +9,7 @@ source:
   sha256: 9fcd60301aae28f97f1301b735f966cc19e7c49b6b4321b839b4579a0c156f38
 
 build:
-  number: 1
+  number: 2
   run_exports:
     # nothing on abi-lab about compatibility. Going with default behavior of assuming semver is observed.
     - {{ pin_subpackage('blosc') }}
