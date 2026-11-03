@@ -1,4 +1,4 @@
-{% set version = "1.21.6" %}
+{% set version = "1.21.7" %}
 
 package:
   name: blosc
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/Blosc/c-blosc/archive/v{{ version }}.tar.gz
-  sha256: 9fcd60301aae28f97f1301b735f966cc19e7c49b6b4321b839b4579a0c156f38
+  sha256: 3c81252accfeeabd236fa219a8bf564c4feed9feb7a3291c227b03a00adb976f
 
 build:
-  number: 2
+  number: 0
   run_exports:
     # nothing on abi-lab about compatibility. Going with default behavior of assuming semver is observed.
     - {{ pin_subpackage('blosc') }}
@@ -22,25 +22,25 @@ requirements:
     - make  # [unix]
   host:
     # we probably won't ever use vc<14 at this point, but this is left here just in case
-    - msinttypes =r26                                # [win and vc<14]
+    - msinttypes =r26  # [win and vc<14]
     # pinnings below are taken should be taken from upstream's internal-complibs folder
     # however old pinnings were kept as-is in order to avoid having to rebuild large
     # amount of downstream packages for those.
     - zlib {{ zlib }}
     - lz4-c {{ lz4_c }}
-    - zstd {{ zstd }}   # This is in aggregate/cbc.yaml, but included here temporarily to work around a CI bug where that cbc.yaml isn't always being regarded.
+    - zstd {{ zstd }}  # This is in aggregate/cbc.yaml, but included here temporarily to work around a CI bug where that cbc.yaml isn't always being regarded.
 
 test:
   commands:
-    - test -e $PREFIX/include/blosc.h                    # [unix]
-    - test -e $PREFIX/include/blosc-export.h             # [unix]
-    - test -e $PREFIX/lib/libblosc.a                     # [unix]
-    - test -e $PREFIX/lib/libblosc${SHLIB_EXT}           # [unix]
-    - if not exist %LIBRARY_INC%\\blosc.h exit 1         # [win]
+    - test -e $PREFIX/include/blosc.h  # [unix]
+    - test -e $PREFIX/include/blosc-export.h  # [unix]
+    - test -e $PREFIX/lib/libblosc.a  # [unix]
+    - test -e $PREFIX/lib/libblosc${SHLIB_EXT}  # [unix]
+    - if not exist %LIBRARY_INC%\\blosc.h exit 1  # [win]
     - if not exist %LIBRARY_INC%\\blosc-export.h exit 1  # [win]
-    - if not exist %LIBRARY_BIN%\\blosc.dll exit 1       # [win]
-    - if not exist %LIBRARY_LIB%\\blosc.lib exit 1       # [win]
-    - if not exist %LIBRARY_LIB%\\libblosc.lib exit 1    # [win]
+    - if not exist %LIBRARY_BIN%\\blosc.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\blosc.lib exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\libblosc.lib exit 1  # [win]
 
 about:
   home: https://blosc.org
